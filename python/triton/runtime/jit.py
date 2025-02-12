@@ -613,7 +613,7 @@ class JITFunction(KernelInterface[T]):
         src = src[re.search(r"^def\s+\w+\s*\(", src, re.MULTILINE).start():]
         self._unsafe_update_src(src)
         # cache of just-in-time compiled kernels
-        self.device_caches = defaultdict(lambda: self.create_binder())
+        self.device_caches = defaultdict(self.create_binder)
         self.hash = None
 
         # Map of global variables used by the function and any functions it
